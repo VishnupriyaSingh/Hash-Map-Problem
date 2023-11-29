@@ -1,15 +1,13 @@
 public class MyHashTable<K> {
     private MyLinkedList<K>[] bucketArray;
     private int numBuckets;
-    private int size;
 
     public MyHashTable() {
         numBuckets = 20;
         bucketArray = new MyLinkedList[numBuckets];
-        size = 0;
-
-        for (int i = 0; i < numBuckets; i++)
+        for (int i = 0; i < numBuckets; i++) {
             bucketArray[i] = new MyLinkedList<>();
+        }
     }
 
     private int getBucketIndex(K key) {
@@ -21,6 +19,11 @@ public class MyHashTable<K> {
     public void add(K key) {
         int bucketIndex = getBucketIndex(key);
         bucketArray[bucketIndex].add(key);
+    }
+
+    public void remove(K key) {
+        int bucketIndex = getBucketIndex(key);
+        bucketArray[bucketIndex].remove(key);
     }
 
     public int get(K key) {
